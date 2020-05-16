@@ -2346,6 +2346,10 @@
 		m.element("PrecompiledHeaderFile", nil, "%s", fileName)
 	end
 
+	function m.precompiledHeaderCompileAs(cfg)
+		m.element("PrecompiledHeaderCompileAs", nil, "CompileAs" .. cfg.pchcompileas)
+	end
+
 	function m.precompiledHeader(cfg, condition)
 		local prjcfg, filecfg = p.config.normalize(cfg)
 		if filecfg then
@@ -2358,6 +2362,9 @@
 			if not prjcfg.flags.NoPCH and prjcfg.pchheader then
 				m.element("PrecompiledHeader", nil, "Use")
 				m.precompiledHeaderFile(prjcfg.pchheader, prjcfg)
+				if prjcfg.pchcompileas then
+					m.precompiledHeaderCompileAs(prjcfg)
+				end
 			else
 				m.element("PrecompiledHeader", nil, "NotUsing")
 			end

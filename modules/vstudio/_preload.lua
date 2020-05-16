@@ -149,6 +149,16 @@
 		}
 	}
 
+	p.api.register {
+		name = "pchcompileas",
+		scope = "config",
+		kind = "string",
+		allowed = {
+			"C",
+			"CPP",
+		}
+	}
+
 	p.api.deprecateField("debuggerflavor", 'Use `debugger` instead.',
 	function(value)
 		debugger('VisualStudio' .. value)
